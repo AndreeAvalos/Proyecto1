@@ -9,8 +9,9 @@ public:
     Nodo();
     Nodo(T);
     Nodo(T,T,T);
-    Nodo arriba,abajo,derecha,izquierda,principal;
-    Nodo sig,ant;
+    Nodo *arriba,*abajo,*izquierdo,*derecho,*principal;
+    Nodo *derecha,*izquierda;
+    Nodo *sig,*ant;
     T getValor();
     //para matriz
     QString getX();
@@ -18,7 +19,7 @@ public:
     void setValor(T);
     int comparar(T);
     //para AVL
-    Nodo raiz,padre;
+    Nodo *raiz,*padre;
     int altura;
     int getAltura();
     int getFE();

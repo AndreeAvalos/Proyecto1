@@ -34,7 +34,8 @@ SOURCES += \
     tareas.cpp \
     equipos.cpp \
     listasimple.cpp \
-    avl.cpp
+    avl.cpp \
+    usuarios.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -46,7 +47,8 @@ HEADERS += \
     tareas.h \
     equipos.h \
     listasimple.h \
-    avl.h
+    avl.h \
+    usuarios.h
 
 FORMS += \
         mainwindow.ui

@@ -1,10 +1,12 @@
 #include "listasimple.h"
+#include "nodo.cpp"
 template<typename T>
 ListaSimple<T>::ListaSimple()
 {
     this->first=nullptr;
     this->size=0;
 }
+
 template <typename T>
 void ListaSimple<T>::agregar(T val){
     Nodo<T> *nuevo= new Nodo<T>(val);

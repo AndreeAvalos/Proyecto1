@@ -5,8 +5,7 @@ template <typename T>
 Nodo<T>::Nodo()
 {
     this->abajo=this->arriba=this->derecha=this->izquierda=this->principal=nullptr;
-    this->val=nullptr;
-    this->x=this->y=0;
+
 }
 //Instancia de nodo con Valor
 template <typename T>
@@ -14,7 +13,7 @@ Nodo<T>::Nodo(T val)
 {
     this->abajo=this->arriba=this->derecha=this->izquierda=this->principal=nullptr;
     this->val=val;
-    this->x=this->y=0;
+    this->x=this->y="";
     this->raiz=nullptr;
     this->altura=0;
     this->padre=nullptr;
