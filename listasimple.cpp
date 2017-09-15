@@ -1,5 +1,5 @@
 #include "listasimple.h"
-#include "nodo.cpp"
+
 template<typename T>
 ListaSimple<T>::ListaSimple()
 {

@@ -1,5 +1,4 @@
 #include "avl.h"
-#include "nodo.cpp"
 
 template<typename T>
 AVL<T>::AVL()
@@ -281,7 +280,7 @@ template<typename T>
 int AVL<T>::comparar(T v1, T v2)
 {
     int resultado=0;
-    if(v1.id<v1.id)
+    if(v1.id<v2.id)
         resultado=-1;
 
     else if(v1.id>v2.id)

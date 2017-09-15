@@ -35,7 +35,9 @@ SOURCES += \
     equipos.cpp \
     listasimple.cpp \
     avl.cpp \
-    usuarios.cpp
+    usuarios.cpp \
+    arbolb.cpp \
+    login.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -48,7 +50,10 @@ HEADERS += \
     equipos.h \
     listasimple.h \
     avl.h \
-    usuarios.h
+    usuarios.h \
+    arbolb.h \
+    login.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    login.ui
