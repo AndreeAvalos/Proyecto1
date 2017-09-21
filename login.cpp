@@ -1,5 +1,7 @@
 #include "login.h"
 #include "ui_login.h"
+#include "avl.cpp"
+#include "usuarios.h"
 
 Login::Login(QWidget *parent) :
     QDialog(parent),
@@ -23,8 +25,14 @@ void Login::on_pushButton_2_clicked()
 
                 //this->hide();
 
+               // AVL<Usuarios> arbolAVL;
+               // for(int i = 0; i <5 ;i++){
+                    //Usuarios nuevo = Usuarios(i,"r","r","r","r","r","r","r");
+                   // arbolAVL.insertar(nuevo);
+               // }
 
-                w->show();
+
+                //w->show();
 
                 ui->label_4->clear();
                 ui->lineEdit->clear();

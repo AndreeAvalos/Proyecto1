@@ -9,7 +9,7 @@ public:
     Nodo();
     Nodo(T);
     Nodo(T,T,T);
-    Nodo *arriba,*abajo,*izquierdo,*derecho,*principal;
+    Nodo *arriba,*abajo,*principal;
     Nodo *derecha,*izquierda;
     Nodo *sig,*ant;
     T getValor();
