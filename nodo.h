@@ -8,7 +8,8 @@ class Nodo
 public:
     Nodo();
     Nodo(T);
-    Nodo(T,T,T);
+    //Nodo(T,T,T);
+    Nodo(T val, QString horizontal, QString vertical);
     Nodo *arriba,*abajo,*principal;
     Nodo *derecha,*izquierda;
     Nodo *sig,*ant;

@@ -37,7 +37,10 @@ SOURCES += \
     avl.cpp \
     usuarios.cpp \
     arbolb.cpp \
-    login.cpp
+    login.cpp \
+    cola.cpp \
+    colaprioridad.cpp \
+    cola.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -52,7 +55,10 @@ HEADERS += \
     avl.h \
     usuarios.h \
     arbolb.h \
-    login.h
+    login.h \
+    cola.h \
+    colaprioridad.h \
+    cola.h
 
 FORMS += \
         mainwindow.ui \

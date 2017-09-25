@@ -1,30 +1,28 @@
 #include "login.h"
 #include <QApplication>
-#include "avl.cpp"
-#include "usuarios.h"
 #include <sstream>
+#include "equipos.h"
+#include "proyectos.h"
+#include "tareas.h"
+#include "cola.cpp"
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     Login w;
 
-    AVL<Usuarios> arbolAVL;
+    Cola<QString> lst;
 
-    for(int i = 0; i <5 ;i++){
-        std::stringstream ss;
-        ss << "Admin" << i;
+    lst.push("hola");
+    lst.push("hola2");
+    lst.push("hola3");
+    lst.push("hola4");
+    lst.pop();
 
-        QString id = QString::fromStdString(ss.str());
-
-        Usuarios nuevo = Usuarios(id,"rr","rr","rr","rr","rr","rr","rr");
-
-        arbolAVL.insertar(nuevo);
-
-    }
-    arbolAVL.impreArbol(arbolAVL.raiz,nullptr);
-
+    lst.push("hola1");
+    lst.push("hola11");
+    lst.push("hola12");
+    lst.imprimir();
    // w.show();
-
 
 
     return a.exec();

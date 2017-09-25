@@ -18,6 +18,23 @@ bool ListaDobleEnlazada<T>::empty()
     return false;
 }
 
+template<class T>
+Nodo<T> ListaDobleEnlazada<T>::buscar(QString nombre)
+{
+    if(first != nullptr){//comparamos si la lista esta vacia
+        Nodo<T> *temp = first;// creamos un nodeo temporal
+
+        while(temp!=nullptr){//Mientras el temporal no sea igual al imero entonces que siga recorriendo
+            if(temp->getValor().nombre==nombre)//si el valor del nombre es igual al valor mandado entonces regresamos el nodo
+                return temp;//retornamos el nodo
+            else
+                temp = temp->sig;// de lo contrario sigue
+        }
+    } else{
+        return nullptr;// si no exite devolvemos nulo
+    }
+}
+
 //Metodo para insertar datos
 template<typename T>
 void ListaDobleEnlazada<T>::add(T val){
@@ -26,19 +43,13 @@ void ListaDobleEnlazada<T>::add(T val){
 
     //Verificamos si el nodo esta vacia
     if(!empty()){
-        first= nuevo;//El primero se vuelve el nuevo
-        first->sig=first;// el siguiente va ser el mismo
-        first->ant=first;// el anterior va ser el mismo
-        last=first;// el ultimo va ser igual al primero
-        //aumentamos el tamano de la lista
-        size++;
+        first=nuevo;//el primer nodo va ser igual al nodo nuevo
+        size++;//aumentamos el valor de la lista
         return;
     }else{
-        last->sig=nuevo;//agregamos el nodo al final y lo apuntamos
-        nuevo->sig=first;// el siguient del nuevo es el primero
-        nuevo->ant=last;//el anterior del nuevo va ser el ultimo
-        last=nuevo;//el nodo ultimo toma el valor del nuevo
-        first->ant=last;//el primero apunta hacia el ultimo
+        nuevo->sig=first;//apuntamos el nuevo hacia el primero
+        first->ant=nuevo;//apuntamos el primero hacia el nuevo
+        first= nuevo;//decimos que el primero va ser el nuevo nodo
         //aumentamos el tamano de la lista
         size++;
         return;
@@ -46,13 +57,3 @@ void ListaDobleEnlazada<T>::add(T val){
 
 }
 
-template <typename T>
-T ListaDobleEnlazada<T>::search(T val){
-    Nodo<T> *temp = first;
-/*
-    while(temp->sig != first){
-        if(temp->getValor()){
-
-        }
-    }*/
-}

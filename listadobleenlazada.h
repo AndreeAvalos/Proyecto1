@@ -10,7 +10,7 @@ public:
     void add(T);
     bool empty();
     int getSize();
-    T search(T);
+    Nodo<T> buscar(QString nombre);
 private:
     Nodo<T> *first,*last;
     int size;

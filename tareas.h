@@ -7,8 +7,9 @@ class Tareas
 {
 public:
     Tareas();
-    QString titulo,descripcion,fEntrega, prioridad,Estado,cUsuario;
-    Tareas(QString titulo,QString descripcion,QString fEntrega,QString prioridad,QString Estado,QString cUsuario);
+    QString titulo,descripcion,fEntrega, prioridad,Estado,cUsuario,id;
+
+    Tareas(QString id, QString titulo,QString descripcion,QString fEntrega,QString prioridad,QString Estado,QString cUsuario);
 
 };
 

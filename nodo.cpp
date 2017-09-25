@@ -17,6 +17,7 @@ Nodo<T>::Nodo(T val)
     this->raiz=nullptr;
     this->altura=0;
     this->padre=nullptr;
+    this->sig=this->ant=nullptr;
 
 }
 //Obtener el valor del nodo
@@ -37,12 +38,25 @@ template<typename T>
 QString Nodo<T>::getY(){
     return this->y;
 }
+/*
 template<typename T>
 Nodo<T>::Nodo(T horizontal, T vertical, T valor){
     this->x= horizontal;
     this->y= vertical;
     this->val=valor;
 }
+*/
+
+template<class T>
+Nodo<T>::Nodo(T val, QString horizontal, QString vertical)
+{
+    this->abajo=this->arriba=this->derecha=this->izquierda=this->principal=nullptr;
+
+    this->val=val;
+    this->x=horizontal;
+    this->y=vertical;
+}
+
 /*
 template<typename T>
 int Nodo<T>::comparar(T val){
