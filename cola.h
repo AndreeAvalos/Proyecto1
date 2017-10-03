@@ -12,6 +12,7 @@ public:
     int size;
     Nodo<T> * buscar(int indice);
     Nodo<T> *first, *last;
+    int comparar(int val1, int val2);
 };
 
 #endif // COLA_H

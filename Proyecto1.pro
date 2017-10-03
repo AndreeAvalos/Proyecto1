@@ -27,8 +27,6 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     nodo.cpp \
-    listadobleenlazada.cpp \
-    matriz.cpp \
     proyectos.cpp \
     activo.cpp \
     tareas.cpp \
@@ -39,14 +37,11 @@ SOURCES += \
     arbolb.cpp \
     login.cpp \
     cola.cpp \
-    colaprioridad.cpp \
     cola.cpp
 
 HEADERS += \
         mainwindow.h \
     nodo.h \
-    listadobleenlazada.h \
-    matriz.h \
     proyectos.h \
     activo.h \
     tareas.h \
@@ -57,8 +52,8 @@ HEADERS += \
     arbolb.h \
     login.h \
     cola.h \
-    colaprioridad.h \
-    cola.h
+    cola.h \
+    matriz.h
 
 FORMS += \
         mainwindow.ui \

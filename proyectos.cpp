@@ -5,7 +5,7 @@ Proyectos::Proyectos()
 
 }
 
-Proyectos::Proyectos(QString nombre, QString descripcion, QString fInicio, QString ffin, QString Estado, QString lider, ArbolB Activos)
+Proyectos::Proyectos(QString nombre, QString descripcion, QString fInicio, QString ffin, QString Estado, QString lider)
 {
     this->nombre=nombre;
     this->descripcion=descripcion;
@@ -13,6 +13,5 @@ Proyectos::Proyectos(QString nombre, QString descripcion, QString fInicio, QStri
     this->fFin = ffin;
     this->Estado = Estado;
     this->Lider=lider;
-    this->Activos=Activos;
-
+    this->Activos=new ArbolB();
 }

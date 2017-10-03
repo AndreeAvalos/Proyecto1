@@ -7,10 +7,11 @@ class Tareas
 {
 public:
     Tareas();
-    QString titulo,descripcion,fEntrega, prioridad,Estado,cUsuario,id;
+    QString titulo,descripcion,fEntrega,Estado,cUsuario,id;
+    int prioridad,prioridad2;
 
-    Tareas(QString id, QString titulo,QString descripcion,QString fEntrega,QString prioridad,QString Estado,QString cUsuario);
-
+    Tareas(QString id, QString titulo,QString descripcion,QString fEntrega,int prioridad, int priorida2 ,QString Estado,QString cUsuario);
+    int compare(Tareas dato);
 };
 
 #endif // TAREAS_H

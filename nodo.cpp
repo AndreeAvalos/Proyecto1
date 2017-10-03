@@ -5,6 +5,10 @@ template <typename T>
 Nodo<T>::Nodo()
 {
     this->abajo=this->arriba=this->derecha=this->izquierda=this->principal=nullptr;
+    this->raiz=nullptr;
+    this->altura=0;
+    this->padre=nullptr;
+    this->sig=this->ant=nullptr;
 
 }
 //Instancia de nodo con Valor
@@ -55,6 +59,11 @@ Nodo<T>::Nodo(T val, QString horizontal, QString vertical)
     this->val=val;
     this->x=horizontal;
     this->y=vertical;
+
+    this->raiz=nullptr;
+    this->altura=0;
+    this->padre=nullptr;
+    this->sig=this->ant=nullptr;
 }
 
 /*

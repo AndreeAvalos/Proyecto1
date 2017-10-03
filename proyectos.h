@@ -8,8 +8,8 @@ class Proyectos
 public:
     Proyectos();
     QString nombre,descripcion,fInicio,fFin,Estado,Lider;
-    ArbolB Activos;
-    Proyectos(QString nombre,QString descripcion,QString fInicio,QString ffin,QString Estado,QString  lider, ArbolB Activos);
+    ArbolB *Activos;
+    Proyectos(QString nombre,QString descripcion,QString fInicio,QString ffin,QString Estado,QString  lider);
 
 
 };

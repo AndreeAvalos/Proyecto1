@@ -2,14 +2,15 @@
 #define EQUIPOS_H
 #include <QString>
 #include "listasimple.h"
-//#include "Usuarios.h"
+#include "usuarios.h"
 
 class Equipos
 {
 public:
     Equipos();
     QString nombre,descripcion,cUsuario;
-    //ListaSimple<Usuarios> Ussers;
+    ListaSimple<Usuarios> *Ussers;
+    Equipos(QString nombre, QString descripcion, QString cUsuario);
 };
 
 #endif // EQUIPOS_H
