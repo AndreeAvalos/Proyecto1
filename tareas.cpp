@@ -5,7 +5,7 @@ Tareas::Tareas()
 
 }
 
-Tareas::Tareas(QString id, QString titulo, QString descripcion, QString fEntrega, int prioridad, int prioridad2, QString Estado, QString cUsuario)
+Tareas::Tareas(QString id, QString titulo, QString descripcion, QString fEntrega, int prioridad, int prioridad2,QString prio, QString Estado, QString cUsuario)
 {
 
     this->id=id;
@@ -16,6 +16,7 @@ Tareas::Tareas(QString id, QString titulo, QString descripcion, QString fEntrega
     this->prioridad2=prioridad2;
     this->Estado=Estado;
     this->cUsuario=cUsuario;
+    this->priori=prio;
 }
 
 int Tareas::compare(Tareas dato)

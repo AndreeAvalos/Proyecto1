@@ -34,7 +34,6 @@ SOURCES += \
     listasimple.cpp \
     avl.cpp \
     usuarios.cpp \
-    arbolb.cpp \
     login.cpp \
     cola.cpp \
     cola.cpp
@@ -49,11 +48,11 @@ HEADERS += \
     listasimple.h \
     avl.h \
     usuarios.h \
-    arbolb.h \
     login.h \
     cola.h \
     cola.h \
-    matriz.h
+    matriz.h \
+    generador.h
 
 FORMS += \
         mainwindow.ui \

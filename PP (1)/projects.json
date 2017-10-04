@@ -1,0 +1,155 @@
+[
+	{
+		"titulo":"Drones",
+		"descripcion":"Creación de un foro para unificar criterios en el desarrollo de drones guatemaltecos",
+		"lider":"L202",
+		"fecha_inicio":"2017-02-20",
+		"fecha_final":"2017-06-20",
+		"estado":"F",
+		"activos":[
+			{
+				"titulo":"Host en DigitalOcean",
+				"descripcion":"Host para almacenar el foro",
+				"cantidad":"1",
+				"valor":"600.00"
+			},
+			{
+				"titulo":"Servidor local",
+				"descripcion":"Máquina servidora local DELL G8",
+				"cantidad":"1",
+				"valor":"4000.00"
+			},
+			{
+				"titulo":"Capacitación Laravel",
+				"descripcion":"Capacitación para equipo de backend",
+				"cantidad":"3",
+				"valor":"2200.00"
+			},
+			{
+				"titulo":"Capacitación Vue.js",
+				"descripcion":"Capacitación para equipo de frontend",
+				"cantidad":"2",
+				"valor":"2200.00"
+			},
+			{
+				"titulo":"Capacitación DevOps",
+				"descripcion":"Capacitación para equipo de despliegue",
+				"cantidad":"1",
+				"valor":"4000.00"
+			},
+			{
+				"titulo":"Repositorio",
+				"descripcion":"Repositorio privado en la plataforma de BitBucket",
+				"cantidad":"1",
+				"valor":"0.00"
+			},
+			{
+				"titulo":"UPS",
+				"descripcion":"UPS de protección para servidor local 15KWH",
+				"cantidad":"1",
+				"valor":"800.00"
+			},
+			{
+				"titulo":"Soporte Laravel",
+				"descripcion":"Membresía de soporte para Laravel",
+				"cantidad":"1",
+				"valor":"400.00"
+			}]
+	},
+	{
+		"titulo":"Internal Skype",
+		"descripcion":"Creación de una plataforma empresarial accesible de comunicaciones en tiempo real.",
+		"lider":"L344",
+		"fecha_inicio":"2015-12-10",
+		"fecha_final":"2018-09-05",
+		"estado":"C",
+		"activos":[
+			{
+				"titulo":"Plan en OpenShift",
+				"descripcion":"Infraestructura en la nube para el backend",
+				"cantidad":"1",
+				"valor":"800.00"
+			},
+			{
+				"titulo":"Servidor local",
+				"descripcion":"Máquina servidora local DELL G8",
+				"cantidad":"1",
+				"valor":"4000.00"
+			},
+			{
+				"titulo":"UPS",
+				"descripcion":"UPS de protección para servidor local 15KWH",
+				"cantidad":"1",
+				"valor":"800.00"
+			},
+			{
+				"titulo":"Capacitación JavaEE",
+				"descripcion":"Capacitación para equipo de backend en la plataforma virtual MitoCode",
+				"cantidad":"5",
+				"valor":"1200.00"
+			},
+			{
+				"titulo":"Soporte JavaEE",
+				"descripcion":"Membresía para soporte (tipo consultoría) en la plataforma virtual MitoCode",
+				"cantidad":"1",
+				"valor":"200.00"
+			},
+			{
+				"titulo":"Soporte Quickblox empresarial",
+				"descripcion":"Membresía de soporte para Quickblox",
+				"cantidad":"1",
+				"valor":"4400.00"
+			}]
+	},
+	{
+		"titulo":"Tracking Control",
+		"descripcion":"Creación de una plataforma empresarial para el seguimiento de vendedores ruteros.",
+		"lider":"L56",
+		"fecha_inicio":"2015-12-10",
+		"fecha_final":"2018-09-05",
+		"estado":"C",
+		"activos":[
+			{
+				"titulo":"Plan en OpenShift",
+				"descripcion":"Infraestructura en la nube para el backend",
+				"cantidad":"1",
+				"valor":"800.00"
+			},
+			{
+				"titulo":"Servidor local",
+				"descripcion":"Máquina servidora local DELL G8",
+				"cantidad":"1",
+				"valor":"4000.00"
+			},
+			{
+				"titulo":"UPS",
+				"descripcion":"UPS de protección para servidor local 15KWH",
+				"cantidad":"1",
+				"valor":"800.00"
+			},
+			{
+				"titulo":"Capacitación JavaEE",
+				"descripcion":"Capacitación para equipo de backend Nabenik",
+				"cantidad":"10",
+				"valor":"2200.00"
+			},
+			{
+				"titulo":"Capacitación DevOps",
+				"descripcion":"Capacitación para equipo de backend Itzdata",
+				"cantidad":"3",
+				"valor":"1200.00"
+			},
+			{
+				"titulo":"Capacitación Android",
+				"descripcion":"Capacitación para equipo de desarrollo móvil Nabenik",
+				"cantidad":"50",
+				"valor":"2200.00"
+			},
+			{
+				"titulo":"Dominio",
+				"descripcion":"Dominio pagado con un proveedor pendiente de determinar",
+				"cantidad":"1",
+				"valor":"600.00"
+			}]
+	}
+]

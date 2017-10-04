@@ -10,6 +10,9 @@ public:
     void agregar(T);
     Nodo<T> *first;
     int size;
+    T getValor();
+private:
+    T val;
 };
 
 #endif // LISTASIMPLE_H

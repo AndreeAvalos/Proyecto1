@@ -21,3 +21,9 @@ void ListaSimple<T>::agregar(T val){
         return;
     }
 }
+
+template<class T>
+T ListaSimple<T>::getValor()
+{
+    return this->val;
+}

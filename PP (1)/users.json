@@ -1,0 +1,123 @@
+[
+	{
+		"codigo" : "A113",
+		"nombres" : "Marta",
+		"apellidos" : "Gómez",
+		"correo" : "mgomez@nbk.com",
+		"rol" : "Administrador",
+		"anotaciones" : "",
+		"fecha_nacimiento" : "1988-06-17",
+		"fecha_contrato" : "2010-06-09",
+		"password" : "1234qwer"
+	},
+	{
+		"codigo" : "E104",
+		"nombres" : "Sarina",
+		"apellidos" : "Bolaños",
+		"correo" : "sbolanios@nbk.com",
+		"rol" : "Especialista",
+		"anotaciones" : "",
+		"fecha_nacimiento" : "1990-06-17",
+		"fecha_contrato" : "2013-04-01",
+		"password" : "1234qwer"
+	},
+	{
+		"codigo" : "E88",
+		"nombres" : "Carlos",
+		"apellidos" : "Coyoy",
+		"correo" : "ccoyoy@nbk.com",
+		"rol" : "Especialista",
+		"anotaciones" : "",
+		"fecha_nacimiento" : "1988-10-08",
+		"fecha_contrato" : "2010-06-22",
+		"password" : "1234qwer"
+	},
+	{
+		"codigo" : "L202",
+		"nombres" : "Karla",
+		"apellidos" : "Juarez",
+		"correo" : "kjuarez@nbk.com",
+		"rol" : "Líder",
+		"anotaciones" : "",
+		"fecha_nacimiento" : "1992-01-07",
+		"fecha_contrato" : "2014-11-19",
+		"password" : "1234qwer"
+	},
+	{
+		"codigo" : "L344",
+		"nombres" : "Sergio",
+		"apellidos" : "Gómez",
+		"correo" : "sgomez@nbk.com",
+		"rol" : "Líder",
+		"anotaciones" : "",
+		"fecha_nacimiento" : "1989-01-07",
+		"fecha_contrato" : "2014-11-20",
+		"password" : "1234qwer"
+	},
+	{
+		"codigo" : "L56",
+		"nombres" : "Josué",
+		"apellidos" : "Lima",
+		"correo" : "jlima@nbk.com",
+		"rol" : "Líder",
+		"anotaciones" : "",
+		"fecha_nacimiento" : "1993-01-07",
+		"fecha_contrato" : "2017-01-22",
+		"password" : "1234qwer"
+	},
+	{
+		"codigo" : "E92",
+		"nombres" : "Marcela",
+		"apellidos" : "Gálvez",
+		"correo" : "mgalvez@nbk.com",
+		"rol" : "Especialista",
+		"anotaciones" : "",
+		"fecha_nacimiento" : "1995-03-12",
+		"fecha_contrato" : "2016-10-20",
+		"password" : "1234qwer"
+	},
+	{
+		"codigo" : "O513",
+		"nombres" : "Oscar",
+		"apellidos" : "Pérez",
+		"correo" : "operez@nbk.com",
+		"rol" : "Operativo",
+		"anotaciones" : "",
+		"fecha_nacimiento" : "1998-01-07",
+		"fecha_contrato" : "2016-08-25",
+		"password" : "1234qwer"
+	},
+	{
+		"codigo" : "O288",
+		"nombres" : "María",
+		"apellidos" : "Alvarez",
+		"correo" : "malvarez@nbk.com",
+		"rol" : "Operativo",
+		"anotaciones" : "",
+		"fecha_nacimiento" : "1999-01-07",
+		"fecha_contrato" : "2017-05-25",
+		"password" : "1234qwer"
+	},
+	{
+		"codigo" : "O111",
+		"nombres" : "Ana",
+		"apellidos" : "Gódinez",
+		"correo" : "agodinez@nbk.com",
+		"rol" : "Operativo",
+		"anotaciones" : "",
+		"fecha_nacimiento" : "1995-12-17",
+		"fecha_contrato" : "2015-05-25",
+		"password" : "1234qwer"
+	},
+	{
+		"codigo" : "O090",
+		"nombres" : "Esther",
+		"apellidos" : "Alcazar",
+		"correo" : "ealcazar@nbk.com",
+		"rol" : "Operativo",
+		"anotaciones" : "",
+		"fecha_nacimiento" : "1990-12-17",
+		"fecha_contrato" : "2014-02-22",
+		"password" : "1234qwer"
+	}
+]

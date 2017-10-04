@@ -1,24 +1,15 @@
 #include "login.h"
 #include <QApplication>
 #include <sstream>
-#include "equipos.h"
-#include "proyectos.h"
-#include "tareas.h"
-#include "cola.cpp"
-#include "matriz.h"
+
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    Login w;
+    MainWindow w;/*
 
    // Cola<Tareas> lst;
-    Tareas nuevo("titulo","titulo1","adftw","ssdf",1,1,"afdswg","ffasdw");
-    Tareas nuevo1("titulo1","titulo2","tadfsf","ssdf",2,1,"fafsdf","adfhf");
-    Tareas nuevo2("titulo2","titulo3","tfasdff","ssdf",1,2,"ffafsda","fhafds");
-    Tareas nuevo3("titulo3","ultimo","tfasdff","ssdf",2,2,"ffafsda","fhafds");
-    Tareas nuevo4("titulo4","primero","tfasdff","ssdf",1,2,"ffafsda","fhafds");
-/*
+
     lst.push(nuevo);
     lst.push(nuevo1);
     lst.push(nuevo2);
@@ -28,7 +19,9 @@ int main(int argc, char *argv[])
 
 
     lst.imprimir();
-*/
+
+
+
     matrizDispersa matriz;
     Tareas tnuevo("tarea1","D","D","D",1,1,"D","D");
     Tareas tnuevo2("tarea2","D","D","D",1,2,"D","D");
@@ -38,7 +31,11 @@ int main(int argc, char *argv[])
     Proyectos pnuevo("avance","fsdf","fsdf","fsdf","fsdf","fsdf");
     Proyectos pnuevo2("avance2","fsdf","fsdf","fsdf","fsdf","fsdf");
     Proyectos pnuevo3("avance3","fsdf","fsdf","fsdf","fsdf","fsdf");
-
+    Tareas nuevo("titulo","titulo1","adftw","ssdf",1,1,"afdswg","ffasdw");
+    Tareas nuevo1("titulo1","titulo2","tadfsf","ssdf",2,1,"fafsdf","adfhf");
+    Tareas nuevo2("titulo2","titulo3","tfasdff","ssdf",1,2,"ffafsda","fhafds");
+    Tareas nuevo3("titulo3","ultimo","tfasdff","ssdf",2,2,"ffafsda","fhafds");
+    Tareas nuevo4("titulo4","primero","tfasdff","ssdf",1,2,"ffafsda","fhafds");
 
 
     matriz.insertarColumna(pnuevo);
@@ -51,9 +48,11 @@ int main(int argc, char *argv[])
     matriz.insertar(nuevo,"edd2","avance");
     matriz.insertar(nuevo2,"edd2","avance3");
     matriz.insertar(nuevo3,"edd","avance");
-    matriz.insertar(nuevo4,"edd3","avance3");
+   // matriz.insertar(nuevo4,"edd3","avance3");
 
     matriz.Graficar();
+*/
+    w.show();
 
     // w.show();f
     return a.exec();

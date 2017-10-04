@@ -13,5 +13,5 @@ Proyectos::Proyectos(QString nombre, QString descripcion, QString fInicio, QStri
     this->fFin = ffin;
     this->Estado = Estado;
     this->Lider=lider;
-    this->Activos=new ArbolB();
+   // this->Activos=new ArbolB();
 }

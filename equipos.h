@@ -9,7 +9,7 @@ class Equipos
 public:
     Equipos();
     QString nombre,descripcion,cUsuario;
-    ListaSimple<Usuarios> *Ussers;
+    ListaSimple<QString> *Ussers;
     Equipos(QString nombre, QString descripcion, QString cUsuario);
 };
 

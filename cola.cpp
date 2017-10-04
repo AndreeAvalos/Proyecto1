@@ -1,5 +1,4 @@
 #include "cola.h"
-#include "nodo.cpp"
 #include <QDebug>
 
 template<typename T>

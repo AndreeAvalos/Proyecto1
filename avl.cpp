@@ -168,7 +168,7 @@ Nodo<T>* AVL<T>::caso1(Nodo<T> *nodo)
         derecha = nodoPadre->derecha;
 
         if(izquierda != nullptr)
-            if(izquierda->getValor()==nodo->getValor())
+            if(izquierda->getValor().id==nodo->getValor().id)
                 nodo->padre->derecha=nullptr;
         colocarAlturas(this->raiz);
     }
@@ -271,9 +271,9 @@ Nodo<T>* AVL<T>::buscar(QString valor, Nodo<T> *nodo, Nodo<T> *padre)
 {
     if(nodo!=nullptr){
         if(padre== nullptr){
-            if(valor>nodo->getValor().id)
+            if(valor.compare(nodo->getValor().id)>0)
                 buscar(valor,nodo->derecha,nodo);
-            else if (valor> nodo->getValor().id)
+            else if (valor.compare(nodo->getValor().id)<0)
                 buscar(valor,nodo->izquierda,nodo);
             else{
                 this->retorno = nodo;
@@ -310,8 +310,8 @@ void AVL<T>::reBalanceo(Nodo<T> *nodo)
 {
     while(nodo!=nullptr){
         if(this->estaDesbalanceado(nodo)){
-            Nodo<T> y=this->mayorHijo(nodo);
-            Nodo<T> z=this->mayorHijo(y);
+            Nodo<T> *y=this->mayorHijo(nodo);
+            Nodo<T> *z=this->mayorHijo(y);
             nodo= this->reestructuracion(nodo,y,z);
         }
         if(nodo!=nullptr)
@@ -331,16 +331,16 @@ bool AVL<T>::estaDesbalanceado(Nodo<T> *nodo)
 template<class T>
 Nodo<T> *AVL<T>::mayorHijo(Nodo<T> *nodo)
 {
-    Nodo<T> iz,der = nullptr;
+    Nodo<T> *iz,*der = nullptr;
     if(nodo!=nullptr){
         if(nodo->izquierda!=nullptr)
             iz = nodo->izquierda;
         if(nodo->derecha !=nullptr)
             der = nodo->derecha;
         if(iz != nullptr && der != nullptr){
-            if (iz.altura > der.altura)
+            if (iz->altura > der->altura)
                 return iz;
-            else if (iz.altura <der.altura)
+            else if (iz->altura <der->altura)
                 return der;
             else
                 return der;

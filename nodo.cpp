@@ -79,10 +79,10 @@ int Nodo<T>::getAltura(){
     int val1=0;
     int val2=0;
     if(this->izquierda!=nullptr)
-        val1=izquierda.getAltura();
+        val1=izquierda->getAltura();
 
     if(derecha!=nullptr)
-        val2=derecha.getAltura();
+        val2=derecha->getAltura();
 
     if(val1 != 0 && val2 !=0 ){
         if (val1 < val2)
@@ -108,10 +108,10 @@ int Nodo<T>::getFE(){
     int val2=0;
 
     if(this->izquierda!=nullptr)
-        val1=izquierda.getAltura();
+        val1=izquierda->getAltura();
 
     if(derecha!=nullptr)
-        val2=derecha.getAltura();
+        val2=derecha->getAltura();
     return val2-val1;
 
 }

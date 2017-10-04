@@ -1,0 +1,122 @@
+[
+	{
+		"equipo":"Desarrollo JavaEE",
+		"proyecto":"Tracking Control",
+		"actividades":[
+			{
+				"titulo":"Propuestas de Arquitectura",
+				"descripcion":"Se elaborarán propuestas para los componentes de la arquitectura de la aplicación",
+				"fecha_entrega":"2016-10-09",
+				"prioridad":"alta",
+				"estado":"finalizada",
+				"responsable":"E104"
+			},
+			{
+				"titulo":"Definición de Arquitectura",
+				"descripcion":"Se decidirá cuál será la arquitectura de la aplicación",
+				"fecha_entrega":"2016-10-12",
+				"prioridad":"media",
+				"estado":"finalizada",
+				"responsable":"E104"
+			},
+			{
+				"titulo":"Montaje de Arquitectura",
+				"descripcion":"Realizar el despliegue de la arquitectura en los diferentes ambientes de desarrollo",
+				"fecha_entrega":"2016-10-12",
+				"prioridad":"media",
+				"estado":"finalizada",
+				"responsable":"E104"
+			}
+		]
+	},
+	{
+		"equipo":"Desarrollo Móvil",
+		"proyecto":"Tracking Control",
+		"actividades":[
+			{
+				"titulo":"Discusión de plataformas",
+				"descripcion":"Debate entre especialistas para definir la plataforma a utilizar en el desarrollo.",
+				"fecha_entrega":"2017-02-22",
+				"prioridad":"alta",
+				"estado":"finalizada",
+				"responsable":"A113"
+			},
+			{
+				"titulo":"Propuestas formales de plataforma",
+				"descripcion":"Elaboración de propuestas formales de plataformas según lo acordado en la Discusión de plataformas.",
+				"fecha_entrega":"2017-02-25",
+				"prioridad":"media",
+				"estado":"finalizada",
+				"responsable":"A113"
+			},
+			{
+				"titulo":"Decisión de plataforma",
+				"descripcion":"Según las propuestas elaboradas se decidirá la plataforma a utilizar.",
+				"fecha_entrega":"2017-02-25",
+				"prioridad":"urgente",
+				"estado":"finalizada",
+				"responsable":"A113"
+			},
+			{
+				"titulo":"Capacitación de plataforma",
+				"descripcion":"Según la plataforma elegida (Android nativo con Java) se desarrollará una capacitación para el equipo de desarrollo.",
+				"fecha_entrega":"2017-02-27",
+				"prioridad":"media",
+				"estado":"finalizada",
+				"responsable":"A113"
+			},
+			{
+				"titulo":"Toma de requerimientos",
+				"descripcion":"Toma de requerimientos utilizando historias de usuario.",
+				"fecha_entrega":"2017-02-22",
+				"prioridad":"baja",
+				"estado":"finalizada",
+				"responsable":"A113"
+			},
+			{
+				"titulo":"Elaboración de sprints",
+				"descripcion":"Siguiendo la metodología SCRUM se definirán los sprints necesarios para elaborar el proyecto.",
+				"fecha_entrega":"2017-02-27",
+				"prioridad":"baja",
+				"estado":"finalizada",
+				"responsable":"A113"
+			}
+		]
+	},
+	{
+		"equipo":"QA",
+		"proyecto":"Drones",
+		"actividades":[
+			{
+				"titulo":"Definición de pruebas de estrés",
+				"descripcion":"Se definirán los métodos para realizar pruebas de estrés sobre la conectividad y rendimiento de los drones.",
+				"fecha_entrega":"2016-08-10",
+				"prioridad":"alta",
+				"estado":"finalizada",
+				"responsable":"E88"
+			},
+			{
+				"titulo":"Definición de pruebas de seguridad inalámbrica",
+				"descripcion":"Se definirán los métodos para realizar pruebas de seguridad sobre los enlaces inalámbricos comprobando los tipos de ataques más comunes.",
+				"fecha_entrega":"2016-08-10",
+				"prioridad":"alta",
+				"estado":"finalizada",
+				"responsable":"E88"
+			}
+		]
+	},
+	{
+		"equipo":"QA",
+		"proyecto":"Tracking Control",
+		"actividades":[
+			{
+				"titulo":"Definición de pruebas de estrés",
+				"descripcion":"Se definirán pruebas de estrés para la plataforma con la herramienta Apache Benchmark, incluídos los criterios de aceptación de dichas pruebas.",
+				"fecha_entrega":"2017-04-10",
+				"prioridad":"alta",
+				"estado":"finalizada",
+				"responsable":"A113"
+			}
+		]
+	}
+]

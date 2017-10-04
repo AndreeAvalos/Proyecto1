@@ -1,6 +1,7 @@
 #ifndef MATRIZ_H
 #define MATRIZ_H
 #include "cola.h"
+#include "cola.cpp"
 #include "tareas.h"
 #include "equipos.h"
 #include "proyectos.h"
@@ -40,13 +41,12 @@ struct nodoDispersa{
         arriba=abajo=derecha=izquierda=nullptr;
         siguiente=anterior=nullptr;
     }
-
-
-public:
-    QString getX() const;
-    void setX(const QString &value);
-    QString getY() const;
-    void setY(const QString &value);
+    QString getY(){
+        return this->y;
+    }
+    QString getX(){
+        return this->x;
+    }
 };
 //--------------------------------------------------------------------------------
 
@@ -73,13 +73,19 @@ struct listaVertical{
             size++;
             return;
         }else{
-            last->abajo=nuevo;
-            nuevo->arriba=last;
-            last=nuevo;
+            inOrden(nuevo);
             size++;
-            return;
         }
     }
+
+    void imprimir(){
+        nodoDispersa *temp = first;
+        while(temp!=nullptr){
+            qInfo() << temp->proyecto.nombre;
+            temp = temp->abajo;
+        }
+    }
+
     nodoDispersa * buscar(QString val){
         nodoDispersa * temp = first;
         while(temp!=nullptr){
@@ -89,6 +95,45 @@ struct listaVertical{
                 temp = temp->abajo;
         }
         return nullptr;
+    }
+    int esMayor(nodoDispersa * val1, nodoDispersa *val2){
+        int contador =1;
+        if(val1->proyecto.nombre.compare(val2->proyecto.nombre)>0)
+            return true;
+        else
+            return false;
+    }
+
+    void inOrden(nodoDispersa *nodo){
+        nodoDispersa *nodoaux = this->first;
+        bool insertado = false;
+
+        while(nodoaux!=nullptr){
+            if(esMayor(nodo,nodoaux)==true)
+                nodoaux=nodoaux->abajo;
+            else{
+                if(nodoaux==first){
+                    nodo->abajo=nodoaux;
+                    nodoaux->arriba=nodo;
+                    first=nodo;
+                    insertado=true;
+                    break;
+                }else{
+                    nodo->arriba=nodoaux->arriba;
+                    nodoaux->arriba->abajo=nodo;
+                    nodo->abajo=nodoaux;
+                    nodoaux->arriba=nodo;
+
+                    insertado=true;
+                    break;
+                }
+            }
+        }
+        if(insertado==false){
+            last->abajo=nodo;
+            nodo->arriba=last;
+            last=nodo;
+        }
     }
 
 };
@@ -116,12 +161,47 @@ struct listaHorizontal{
             size++;
             return;
         }else{
-
-            last->derecha=nuevo;
-            nuevo->izquierda=last;
-            last=nuevo;
+            inOrden(nuevo);
             size++;
-            return;
+        }
+    }
+    int esMayor(nodoDispersa * val1, nodoDispersa *val2){
+        int contador =1;
+        if(val1->equipo.nombre.compare(val2->equipo.nombre)<0)
+            return true;
+        else
+            return false;
+    }
+
+    void inOrden(nodoDispersa *nodo){
+        nodoDispersa *nodoaux = this->first;
+        bool insertado = false;
+
+        while(nodoaux!=nullptr){
+            if(esMayor(nodo,nodoaux)==true)
+                nodoaux=nodoaux->derecha;
+            else{
+                if(nodoaux==first){
+                    nodo->derecha=nodoaux;
+                    nodoaux->izquierda=nodo;
+                    first=nodo;
+                    insertado=true;
+                    break;
+                }else{
+                    nodo->izquierda=nodoaux->izquierda;
+                    nodoaux->izquierda->derecha=nodo;
+                    nodo->derecha=nodoaux;
+                    nodoaux->izquierda=nodo;
+
+                    insertado=true;
+                    break;
+                }
+            }
+        }
+        if(insertado==false){
+            last->derecha=nodo;
+            nodo->izquierda=last;
+            last=nodo;
         }
     }
 
@@ -168,7 +248,7 @@ struct matrizDispersa{
              qInfo() << "no existe";
          else{
              add(val,horizontal,vertical);
-             qInfo() <<"se inserto con exito";
+             //qInfo() <<"se inserto con exito";
          }
 
     }
@@ -177,8 +257,8 @@ struct matrizDispersa{
 
         if(this->size==0){
 
-            nodoDispersa * nuevo = new nodoDispersa(horizontal->getX(),vertical->getY());
-            nuevo->valor->push(val);
+            nodoDispersa * nuevo = new nodoDispersa(horizontal->equipo.nombre,vertical->proyecto.nombre);
+            nuevo->getValor()->push(val);
 
             horizontal->abajo=nuevo;//enlazamos la cabecera con el nodo
             vertical->derecha=nuevo;//enlazamos cabecera con el nodo
@@ -189,6 +269,89 @@ struct matrizDispersa{
             this->size++;
 
        }else if( this->size>0){
+            if(comparar(horizontal->equipo.nombre,vertical->proyecto.nombre)==true){
+                nodoDispersa *nodoAuxiliarHorizontal = lsthorizontal->buscar(horizontal->equipo.nombre);
+                nodoDispersa *nodoAux = nodoAuxiliarHorizontal;
+                while(nodoAux!=nullptr){
+                    if(nodoAux->getY()==vertical->proyecto.nombre){
+                        nodoAuxiliarHorizontal=nodoAux;
+                        break;
+                    }else
+                        nodoAux=nodoAux->abajo;
+                }
+                nodoAuxiliarHorizontal->getValor()->push(val);
+                return;
+
+            }else{
+
+                nodoDispersa *nodoAuxiliarHorizontal = lsthorizontal->buscar(horizontal->equipo.nombre);
+                nodoDispersa *nodoAux = nodoAuxiliarHorizontal->abajo;
+
+                nodoDispersa *nodo = new nodoDispersa(horizontal->equipo.nombre,vertical->proyecto.nombre);
+                nodo->getValor()->push(val);
+
+                nodoDispersa *nodoAuxiliarVertical =lstvertical->buscar(vertical->proyecto.nombre);
+                nodoDispersa *nodoAux2 = nodoAuxiliarVertical->derecha;
+
+                bool agregado=false;
+                if(nodoAuxiliarVertical->derecha!=nullptr){
+                while(nodoAux2!=nullptr){
+                    if(horizontal->equipo.nombre==nodoAux2->getX())
+                        nodoAux2= nodoAux2->derecha;
+                    else{
+                        nodo->derecha=nodoAux2;
+                        nodo->izquierda=nodoAux2->izquierda;
+                        nodoAux2->izquierda->derecha=nodo;
+                        nodoAux2->izquierda=nodo;
+                        agregado=true;
+                        break;
+                    }
+                }
+
+                if(agregado==false){
+                    nodoAux2=nodoAuxiliarVertical->derecha;
+                    while(nodoAux2->derecha!=nullptr){
+                        nodoAux2=nodoAux2->derecha;
+                    }
+                    nodo->izquierda=nodoAux2;
+                    nodoAux2->derecha=nodo;
+                }
+
+               }else{
+                   nodoAuxiliarVertical->derecha=nodo;
+                   nodo->izquierda=nodoAuxiliarVertical;
+                }
+                agregado = false;
+                if(nodoAuxiliarHorizontal->abajo!=nullptr){
+                while(nodoAux!=nullptr){
+                    if(vertical->proyecto.nombre.compare(nodoAux->getY())>=0)
+                        nodoAux=nodoAux->abajo;
+                    else{
+                        nodo->abajo=nodoAux;
+                        nodo->arriba=nodoAux->arriba;
+                        nodoAux->arriba->abajo=nodo;
+                        nodoAux->arriba=nodo;
+                        agregado=true;
+                        break;
+                    }
+                }
+                if(agregado==false){
+                    nodoAux=nodoAuxiliarHorizontal->abajo;
+                    while(nodoAux->abajo!=nullptr){
+                        nodoAux=nodoAux->abajo;
+                    }
+                    nodo->arriba=nodoAux;
+                    nodoAux->abajo=nodo;
+                }
+
+                }else{
+                    nodoAuxiliarHorizontal->abajo=nodo;
+                    nodo->arriba=nodoAuxiliarHorizontal;
+                }
+            }
+
+
+            /*
             nodoDispersa *derecha = lsthorizontal->first;
             nodoDispersa *actual=derecha;
 
@@ -253,10 +416,11 @@ struct matrizDispersa{
 
                 }else
                     abajo=abajo->abajo;
-            }
+            }*/
+
+        }
 
             this->size++;
-        }
     }
     bool eliminar(QString x,QString y){
        nodoDispersa *horizontal=lsthorizontal->first;
@@ -279,8 +443,6 @@ struct matrizDispersa{
     //Metodo para insertar una fila
     void insertarFila(Equipos val){
         lsthorizontal->insertar(val);
-
-
     }
     //Metodo para insertar una columna
     void insertarColumna(Proyectos val){
@@ -288,14 +450,27 @@ struct matrizDispersa{
     }
 
 
+    bool comparar(QString horizontal, QString vertical){
+        nodoDispersa *nodoAux = lsthorizontal->buscar(horizontal);
+
+        while(nodoAux!=nullptr){
+            if(nodoAux->getY()==vertical){
+                return true;
+            }else
+                nodoAux=nodoAux->abajo;
+        }
+        return false;
+    }
+
+
     void Graficar(){
         std:: ofstream ficheroSalida;
         ficheroSalida.open("/home/andree/Escritorio/matriz.txt");
-        ficheroSalida << "digraph{ bgcolor = gray \n node[fontcolor = \"white \", height = 0.5, color = \"white \"] \n [shape=circle, style=filled, color=blue] \n rankdir=LR \n edge  [color=\"black\", dir=fordware]\n";
+        ficheroSalida << "digraph{ bgcolor = gray \n node[fontcolor = white, height = 0.5, color = white ] \n [shape=box, style=filled, color=black] \n rankdir=LR \n edge  [color=\"white\", dir=fordware]\n";
         nodoDispersa *derecha = lsthorizontal->first;
         nodoDispersa*Actual= derecha;
         int contador = 1;
-        ficheroSalida << "inicial[style = \"fiilled\" ; label = \"inicial\" ; pos = \"0,0!\"] \n";
+        ficheroSalida << "inicial[style = \"filled\" ; label = \"inicial\" ; pos = \"0,0!\"] \n";
 
         //Obtener cabecera Horizontal
         while(derecha!=nullptr){
@@ -329,7 +504,7 @@ struct matrizDispersa{
                     Actual= Actual->abajo;
                     Cola<Tareas> *tareas = Actual->getValor();
                     if(tareas->first!=nullptr)
-                        ficheroSalida << tareas->first->getValor().id.toStdString() <<"[shape=circle ,style =\"filled\"; label= \" "<<std::to_string(tareas->size) << " Tareas \" ; pos = \""<<std::to_string(posX(Actual->getX()))<<','<<std::to_string(posY(Actual->getY()))<<"!\"]\n" ;
+                        ficheroSalida << tareas->first->getValor().id.toStdString() <<"[shape=box ,style =\"filled\"; label= \" "<<std::to_string(tareas->size) << " Tareas \" ; pos = \""<<std::to_string(posX(Actual->getX()))<<','<<std::to_string(posY(Actual->getY()))<<"!\"]\n" ;
                 }
                 abajo=abajo->abajo;
             }
@@ -527,24 +702,20 @@ struct matrizDispersa{
         return -1;
     }
 };
+struct nodoC{
+    nodoC *first, *last;
+
+    Tareas val;
+
+    //void getValor(){
+   //     return this->val;
+    //}
+    nodoC(){
+        this->first=this->last=nullptr;
+    }
+};
+struct ColaP{
+
+};
 #endif // MATRIZ_H
 
-QString nodoDispersa::getY() const
-{
-return y;
-}
-
-void nodoDispersa::setY(const QString &value)
-{
-y = value;
-}
-
-QString nodoDispersa::getX() const
-{
-return x;
-}
-
-void nodoDispersa::setX(const QString &value)
-{
-x = value;
-}

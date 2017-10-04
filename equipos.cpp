@@ -10,5 +10,5 @@ Equipos::Equipos(QString nombre, QString descripcion, QString cUsuario)
     this->nombre=nombre;
     this->descripcion=descripcion;
     this->cUsuario=cUsuario;
-    this->Ussers=new ListaSimple<Usuarios>();
+    this->Ussers=new ListaSimple<QString>();
 }

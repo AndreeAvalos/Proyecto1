@@ -1,0 +1,26 @@
+[
+	{
+		"nombre":"Despliegue",
+		"descripcion":"Equipo encargado del despliegue de aplicaciones",
+		"especialista":"E88",
+		"empleados":[]
+	},
+	{
+		"nombre":"QA",
+		"descripcion":"Equipo de testeo, muy vinculado al equipo de despliegue",
+		"especialista":"E88",
+		"empleados":["O513"]
+	},
+	{
+		"nombre":"Desarrollo JavaEE",
+		"descripcion":"Equipo encargado del desarrollo de backend en Java Enterprise Edition",
+		"especialista":"E92",
+		"empleados":["O513", "O288"]
+	},
+	{
+		"nombre":"Desarrollo Móvil",
+		"descripcion":"Equipo encargado del desarrollo de aplicaciones móviles nativas y también híbridas",
+		"especialista":"E104",
+		"empleados":["O513", "O111", "O090"]
+	}
+]
