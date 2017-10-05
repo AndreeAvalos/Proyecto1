@@ -97,7 +97,7 @@ struct listaVertical{
         return nullptr;
     }
     int esMayor(nodoDispersa * val1, nodoDispersa *val2){
-        int contador =1;
+
         if(val1->proyecto.nombre.compare(val2->proyecto.nombre)>0)
             return true;
         else
@@ -166,7 +166,6 @@ struct listaHorizontal{
         }
     }
     int esMayor(nodoDispersa * val1, nodoDispersa *val2){
-        int contador =1;
         if(val1->equipo.nombre.compare(val2->equipo.nombre)<0)
             return true;
         else
@@ -666,6 +665,21 @@ struct matrizDispersa{
         ficheroSalida.close();
         system("fdp -Tpng /home/andree/Escritorio/matriz.txt -o /home/andree/Escritorio/matriz.png");
 
+    }
+
+    nodoDispersa * buscar(QString x, QString y){
+        nodoDispersa *horizontal = lsthorizontal->first;
+        while(horizontal!=nullptr){
+            nodoDispersa *vertical = horizontal->abajo;
+            while(vertical!=nullptr){
+                if(vertical->getY()==y&&vertical->getX()==x){
+                    return vertical;
+                }
+                vertical=vertical->abajo;
+            }
+            horizontal=horizontal->derecha;
+        }
+        return nullptr;
     }
 
     int posX(QString horizontal)

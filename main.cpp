@@ -17,10 +17,7 @@ int main(int argc, char *argv[])
     lst.push(nuevo4);
     lst.pop();
 
-
     lst.imprimir();
-
-
 
     matrizDispersa matriz;
     Tareas tnuevo("tarea1","D","D","D",1,1,"D","D");
@@ -49,9 +46,9 @@ int main(int argc, char *argv[])
     matriz.insertar(nuevo2,"edd2","avance3");
     matriz.insertar(nuevo3,"edd","avance");
    // matriz.insertar(nuevo4,"edd3","avance3");
-
     matriz.Graficar();
 */
+
     w.show();
 
     // w.show();f

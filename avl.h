@@ -16,7 +16,7 @@ public:
     Nodo<T>* add(T,Nodo<T>*);
     void EnlazarPadres(Nodo<T>*,Nodo<T>*);
     Nodo<T> *raiz,*nuevaRaiz, *Aux,*Aux2,*retorno,informacion;
-    bool match,borrado,apuntado,apuntado2;
+    bool match,borrado,apuntado,apuntado2,cambiado;
     int altura(Nodo<T>*);
     int MAX(int, int);
     Nodo<T> *RotacionIzquierda(Nodo<T>*);
@@ -29,6 +29,7 @@ public:
     Nodo<T> *caso2(Nodo<T>*);
     Nodo<T> *caso3(Nodo<T>*);
     Nodo<T> *buscar(QString,Nodo<T>*,Nodo<T>*);
+    bool cambiarValor(Nodo<T> *nuevo, QString val, Nodo<T> *nodo, Nodo<T> *padre);
     void colocarAlturas(Nodo<T>*);
     void reBalanceo(Nodo<T>*);
     bool estaDesbalanceado(Nodo<T>*);
@@ -37,6 +38,7 @@ public:
     Nodo<T> *reestructuracion(Nodo<T>*,Nodo<T>*,Nodo<T>*);
     int comparar(T, T);
     void impreArbol(Nodo<T> *nodo, Nodo<T> *padre);
+
     std:: ofstream ficheroSalida;
 };
 

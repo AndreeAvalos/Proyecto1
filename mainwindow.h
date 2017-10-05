@@ -19,6 +19,8 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QMainWindow>
+#include <QCheckBox>
+#include <QtGui>
 
 /*
 
@@ -42,10 +44,19 @@ public:
     explicit MainWindow(QWidget *parent = 0);
      AVL<Usuarios> *avl = new AVL<Usuarios>();
      matrizDispersa *matriz= new matrizDispersa();
+     QPushButton *ta;
+     int ck=0,ck2=0,ck3=0,ck4=0,ck5=0,ck6 =0, ck7=0,ck8=0,ck9=0,ck10=0;
+     int contador=0;
+
+
 
     //matrizDispersa matriz;
 
     ~MainWindow();
+
+
+public Q_SLOTS:
+     void eliminarTarea(QString x, QString y);
 
 private slots:
     void on_MainWindow_destroyed();
@@ -66,6 +77,7 @@ private slots:
 
     void on_pushButton_9_clicked();
 
+
     void rePintarMatriz();
     void cargarUsuarios();
     void cargarEquipos();
@@ -75,6 +87,15 @@ private slots:
     void agregarEquipo(Equipos val);
     void agregarProyecto(Proyectos val);
     void agregarActividades(Tareas val, QString equipo, QString proyecto);
+    void imprimirH();
+    void imprimirV();
+    int posX(QString x);
+    int posY(QString y);
+    void imprimirT();
+    void imprimirUsuarios();
+    void impreArbol(Nodo<Usuarios> *nodo, Nodo<Usuarios> *padre);
+    void imprimirEquipos();
+    void imprimirProyectos();
 
     void on_pushButton_8_clicked();
 
@@ -85,6 +106,40 @@ private slots:
     void on_pushButton_12_clicked();
 
     void on_pushButton_13_clicked();
+
+    void on_pushButton_15_clicked();
+
+    void on_selecUsuario_currentIndexChanged(int index);
+
+    void on_rolUsuario_currentIndexChanged(int index);
+
+    void on_comboBox_currentIndexChanged(int index);
+
+    void on_pushButton_18_clicked();
+
+    void on_pushButton_16_clicked();
+
+    void on_equipoUsuario_activated(int index);
+
+    void on_pushButton_17_clicked();
+
+    void on_pushButton_19_clicked();
+
+    void on_equipoActividades_activated(int index);
+
+    void on_proyectoActividades_activated(int index);
+
+    void on_tableWidget_2_cellClicked(int row, int column);
+
+    void on_pushButton_20_clicked();
+
+    void on_comboBox_2_activated(int index);
+
+    void on_comboBox_3_activated(int index);
+
+    void on_comboBox_4_currentIndexChanged(const QString &arg1);
+
+    void on_comboBox_4_activated(int index);
 
 private:
     Ui::MainWindow *ui;

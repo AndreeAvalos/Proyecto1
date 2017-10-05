@@ -10,7 +10,7 @@ public:
     bool pop();
     void imprimir(void);
     int size;
-    Nodo<T> * buscar(int indice);
+    Nodo<T> * buscar(QString id);
     Nodo<T> *first, *last;
     int comparar(int val1, int val2);
 };

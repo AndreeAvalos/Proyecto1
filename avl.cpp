@@ -298,6 +298,40 @@ Nodo<T>* AVL<T>::buscar(QString valor, Nodo<T> *nodo, Nodo<T> *padre)
     return this->retorno;
 }
 
+template<class T>
+bool AVL<T>::cambiarValor(Nodo<T> *nuevo, QString val, Nodo<T> *nodo, Nodo<T> *padre)
+{
+    if(nodo!=nullptr){
+        if(padre== nullptr){
+            if(val.compare(nodo->getValor().id)>0)
+                cambiarValor(nuevo,val,nodo->derecha,nodo);
+            else if (val.compare(nodo->getValor().id)<0)
+                cambiarValor(nuevo,val,nodo->izquierda,nodo);
+            else{
+                nodo->setValor(nuevo->getValor());
+                return true;
+            }
+        }
+        else{
+            if(val==nodo->getValor().id){
+                this->match=true;
+
+                nodo->setValor(nuevo->getValor());
+                cambiado = true;
+
+            }else{
+                if(this->match!=true){
+                    if(val>nodo->getValor().id)
+                        cambiarValor(nuevo,val,nodo->derecha,nodo);
+                    else
+                        cambiarValor(nuevo,val,nodo->izquierda,nodo);
+                }
+            }
+        }
+    }
+    return cambiado;
+}
+
 template<typename T>
 void AVL<T>::colocarAlturas(Nodo<T> *nodo)
 {

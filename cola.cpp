@@ -193,6 +193,20 @@ void Cola<T>::imprimir()
 }
 
 template<class T>
+Nodo<T> *Cola<T>::buscar(QString id)
+{
+    Nodo<T> *temp = first;
+    while(temp!=nullptr){
+        if(temp->getValor().id==id){
+            return temp;
+        }else
+            temp =temp->sig;
+    }
+    return nullptr;
+
+}
+
+template<class T>
 int Cola<T>::comparar(int val1, int val2)
 {
     if(val1>val2)
