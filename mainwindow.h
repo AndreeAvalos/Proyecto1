@@ -46,8 +46,8 @@ public:
      matrizDispersa *matriz= new matrizDispersa();
      QPushButton *ta;
      int ck=0,ck2=0,ck3=0,ck4=0,ck5=0,ck6 =0, ck7=0,ck8=0,ck9=0,ck10=0;
-     int contador=0;
-
+     int contador=0, privilegio = 100;
+     int key=0,key2=0,key5=0,key3=0,key4=0,key6=0;
 
 
     //matrizDispersa matriz;
@@ -55,8 +55,9 @@ public:
     ~MainWindow();
 
 
-public Q_SLOTS:
+public slots:
      void eliminarTarea(QString x, QString y);
+     void bloquear();
 
 private slots:
     void on_MainWindow_destroyed();
@@ -140,6 +141,51 @@ private slots:
     void on_comboBox_4_currentIndexChanged(const QString &arg1);
 
     void on_comboBox_4_activated(int index);
+
+    void on_pushButton_14_clicked();
+
+    void on_equipoEquipo_activated(const QString &arg1);
+
+    void on_equipoEquipo_activated(int index);
+
+    void on_comboBox_5_activated(int index);
+
+    void on_proyectosProyectos_activated(int index);
+
+    void on_estadoProyectos_activated(int index);
+
+    void on_liderProyectos_activated(int index);
+
+    void on_pushButton_21_clicked();
+
+    void on_pushButton_22_clicked();
+
+    void on_especialistaEquipo_activated(int index);
+
+    void on_pushButton_24_clicked();
+    void cargarTareasSecundarias();
+
+    void on_pushButton_23_clicked();
+
+    void on_equipoC_activated(int index);
+
+    void on_proyectoC_activated(const QString &arg1);
+
+    void on_proyectoC_activated(int index);
+
+    void on_prioridadC_activated(int index);
+
+    void on_estadoC_activated(int index);
+
+    void on_usuariosC_activated(int index);
+
+    void on_pushButton_25_clicked();
+
+    void on_pushButton_27_clicked();
+
+    void on_comboBox_activated(const QString &arg1);
+
+    void on_comboBox_activated(int index);
 
 private:
     Ui::MainWindow *ui;

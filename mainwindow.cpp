@@ -59,9 +59,72 @@ void MainWindow::on_pushButton_7_clicked()
 
 void MainWindow::on_pushButton_9_clicked()
 {
-    matriz->Graficar();
-    this->rePintarMatriz();
+    Nodo<Usuarios> * temp = avl->buscar(ui->comboBox->itemText(key),avl->raiz,nullptr);
+    matriz->imprimirUsuario(temp);
 
+}
+
+void MainWindow::bloquear(){
+
+    ui->pushButton_5->setVisible(false);
+    ui->pushButton_6->setVisible(false);
+    ui->pushButton_7->setVisible(false);
+    ui->pushButton_8->setVisible(false);
+    //ui->pushButton_9->setVisible(false);
+    ui->pushButton_10->setVisible(false);
+    ui->pushButton_11->setVisible(false);
+    ui->pushButton_12->setVisible(false);
+    ui->pushButton_13->setVisible(false);
+    //ui->pushButton_14->setVisible(false);
+    ui->pushButton_15->setVisible(false);
+    ui->pushButton_16->setVisible(false);
+    ui->pushButton_17->setVisible(false);
+    //ui->pushButton_18->setVisible(false);
+    //ui->pushButton_19->setVisible(false);
+    //ui->pushButton_20->setVisible(false);
+    ui->pushButton_21->setVisible(false);
+    ui->pushButton_22->setVisible(false);
+    ui->pushButton_23->setVisible(false);
+
+    if(privilegio ==1){
+        qInfo()<< "No tiene bloqueo";
+        ui->pushButton->setVisible(true);
+        ui->pushButton_2->setVisible(true);
+        ui->pushButton_3->setVisible(true);
+        ui->pushButton_4->setVisible(true);
+        ui->pushButton_5->setVisible(true);
+        ui->pushButton_6->setVisible(true);
+        ui->pushButton_7->setVisible(true);
+        ui->pushButton_8->setVisible(true);
+        ui->pushButton_9->setVisible(true);
+        ui->pushButton_10->setVisible(true);
+        ui->pushButton_11->setVisible(true);
+        ui->pushButton_12->setVisible(true);
+        ui->pushButton_13->setVisible(true);
+        ui->pushButton_14->setVisible(true);
+        ui->pushButton_15->setVisible(true);
+        ui->pushButton_16->setVisible(true);
+        ui->pushButton_17->setVisible(true);
+        ui->pushButton_18->setVisible(true);
+        ui->pushButton_19->setVisible(true);
+        ui->pushButton_20->setVisible(true);
+        ui->pushButton_21->setVisible(true);
+        ui->pushButton_22->setVisible(true);
+        ui->pushButton_23->setVisible(true);
+
+    }else if(privilegio==2){
+        ui->pushButton_7->setVisible(true);
+        ui->pushButton_6->setVisible(true);
+        ui->pushButton_15->setVisible(true);
+        ui->pushButton_17->setVisible(true);
+        ui->pushButton_22->setVisible(true);
+        ui->pushButton_23->setVisible(true);
+    }else if(privilegio==3){
+        ui->pushButton_5->setVisible(true);
+        ui->pushButton_15->setVisible(true);
+        ui->pushButton_17->setVisible(true);
+        ui->pushButton_21->setVisible(true);
+    }
 }
 
 void MainWindow::rePintarMatriz()
@@ -97,7 +160,12 @@ void MainWindow::cargarUsuarios()
        for(int i =0; i<usuario.count();i++){
            ar1 = usuario.at(i).toObject();
            Usuarios nuevo (ar1["codigo"].toString(),ar1["nombres"].toString(),ar1["apellidos"].toString(),ar1["fecha_nacimiento"].toString(),ar1["fecha_contrato"].toString(),ar1["rol"].toString(),ar1["anotaciones"].toString(),ar1["password"].toString());
+           if(nuevo.rol=="Especialista")
+               ui->especialistaEquipo->addItem(nuevo.id);
+           else if(nuevo.rol=="Líder")
+               ui->liderProyectos->addItem(nuevo.id);
            avl->insertar(nuevo);
+           ui->comboBox->addItem(nuevo.id);
            ui->selecUsuario->addItem(nuevo.id);
            ui->comboBox_4->addItem(nuevo.id);
        }
@@ -269,6 +337,7 @@ void MainWindow::imprimirH()
 
         nuevo->setFixedHeight(60);
         ui->horizontalLayout->addWidget(nuevo);
+        ui->equipoEquipo->addItem(temp->equipo.nombre);
         temp = temp->derecha;
     }
 
@@ -397,6 +466,7 @@ void MainWindow::imprimirEquipos()
     while(temp!=nullptr){
         ui->equipoUsuario->addItem(temp->equipo.nombre);
         ui->equipoActividades->addItem(temp->equipo.nombre);
+        ui->equipoC->addItem(temp->equipo.nombre);
         temp=temp->derecha;
     }
 
@@ -409,6 +479,8 @@ void MainWindow::imprimirProyectos()
     while(temp!=nullptr){
         //ui->equipoUsuario->addItem(temp->proyecto.nombre);
         ui->proyectoActividades->addItem(temp->proyecto.nombre);
+        ui->proyectosProyectos->addItem(temp->proyecto.nombre);
+        ui->proyectoC->addItem(temp->proyecto.nombre);
         temp=temp->abajo;
     }
 }
@@ -466,6 +538,12 @@ void MainWindow::on_pushButton_15_clicked()
         avl->cambiado=false;
     }else{
         Usuarios nuevo(id,nombre,apellido,fNacimiento,fContratacion,rol,anotacion,pass);
+        ui->usuariosC->addItem(id);
+        ui->selecUsuario->addItem(id);
+        if(rol=="Líder")
+            ui->liderProyectos->addItem(id);
+        else if(rol =="Especialista")
+            ui->especialistaEquipo->addItem(id);
         agregarUsuarios(nuevo);
     }
 }
@@ -534,6 +612,11 @@ void MainWindow::on_pushButton_16_clicked()
     ui->fechaInicioUsuario->clear();
     ui->contratacionUsuario->clear();
     ui->passUsuario->clear();
+
+    QString id= ui->selecUsuario->itemText(ck);
+    avl->eliminar(id);
+
+    ui->selecUsuario->removeItem(ck);
 }
 
 void MainWindow::on_equipoUsuario_activated(int index)
@@ -561,49 +644,7 @@ void MainWindow::on_pushButton_17_clicked()
 
 void MainWindow:: on_pushButton_19_clicked()
 {
-    QString x = ui->equipoActividades->itemText(ck6);
-    QString y = ui->proyectoActividades->itemText(ck7);
-    nodoDispersa *temp = matriz->buscar(x,y);
-    //asignamos valor a la tabla
-
-    ui->tableWidget_2->clearContents();
-    ui->tableWidget_2->setRowCount(0);
-
-    if(temp!=nullptr){
-        Cola<Tareas> *temp2 = temp->getValor();
-        ui->tableWidget_2->setRowCount(temp->getValor()->size);
-        if(temp2->first!=nullptr){
-
-            Nodo<Tareas> *temp3=temp2->first;
-            int cont =0;
-            while(temp3!=nullptr){
-                //qInfo()<<temp3->getValor().titulo;
-                ui->tableWidget_2->setItem(cont,0,new QTableWidgetItem(temp3->getValor().id));
-                ui->tableWidget_2->setItem(cont,1,new QTableWidgetItem(temp3->getValor().titulo));
-                ui->tableWidget_2->setItem(cont,2,new QTableWidgetItem(temp3->getValor().fEntrega));
-                ui->tableWidget_2->setItem(cont,3,new QTableWidgetItem(temp3->getValor().priori));
-                ui->tableWidget_2->setItem(cont,4,new QTableWidgetItem(temp3->getValor().Estado));
-                ui->tableWidget_2->setItem(cont,5,new QTableWidgetItem(temp3->getValor().cUsuario));
-                ui->tableWidget_2->setItem(cont,6,new QTableWidgetItem("M"));
-                // ui->tableWidget_2->setItem(cont,7,new QTableWidgetItem("M"));
-
-                //nuevo->clicked();
-
-                //QObject::connect(ui->tableWidget_2->cellWidget(cont,6), SIGNAL(clicked()), this, SLOT(eliminarTarea(x,y)));
-                //ui->tableWidget_2->setCellWidget(cont,6,ta);
-                //connect(nuevo, SIGNAL (clicked()), MainWindow, SLOT ());
-
-                QPushButton *nuevo2 = new QPushButton();
-
-
-                cont++;
-                temp3=temp3->sig;
-            }
-        }
-
-
-
-    }
+  cargarTareasSecundarias();
 }
 
 void MainWindow::on_equipoActividades_activated(int index)
@@ -696,4 +737,304 @@ void MainWindow::on_comboBox_4_currentIndexChanged(const QString &arg1)
 void MainWindow::on_comboBox_4_activated(int index)
 {
     ck10=index;
+}
+
+void MainWindow::on_pushButton_14_clicked()
+{
+    avl->impreArbol(avl->raiz,nullptr);
+}
+
+void MainWindow::on_equipoEquipo_activated(const QString &arg1)
+{
+   //metodo que no voy a utilizar xd pero lo puse por que me confundi y me acabo de despertar xdxd
+}
+
+void MainWindow::on_equipoEquipo_activated(int index)
+{
+    key=index;
+    nodoDispersa *temp = matriz->lsthorizontal->buscar(ui->equipoEquipo->itemText(key));
+    ui->nombreEquipo->setText(temp->equipo.nombre);
+    ui->descripcionEquipo->setPlainText(temp->equipo.descripcion);
+
+    Nodo<QString> *nodo = temp->equipo.Ussers->first;
+
+
+    ui->tableWidget_3->setRowCount(temp->equipo.Ussers->size);
+
+    int contador=0;
+    while (nodo!=nullptr) {
+
+        ui->tableWidget_3->setItem(contador,0,new QTableWidgetItem());
+        ui->tableWidget_3->setItem(contador,1,new QTableWidgetItem(nodo->getValor()));
+        ui->tableWidget_3->setCellWidget(contador,0,new QCheckBox);
+        contador++;
+        nodo=nodo->sig;
+    }
+}
+
+void MainWindow::on_comboBox_5_activated(int index)
+{
+    key2=index;
+}
+
+void MainWindow::on_proyectosProyectos_activated(int index)
+{
+    key3=index;
+}
+
+void MainWindow::on_estadoProyectos_activated(int index)
+{
+    key4=index;
+}
+
+void MainWindow::on_liderProyectos_activated(int index)
+{
+    key5=index;
+}
+
+void MainWindow::on_pushButton_21_clicked()
+{
+    //aqui agregamos equipo con privilegios 3 solo se modifica
+    QString titulo = ui->nombreEquipo->text();
+    QString especialista = ui->especialistaEquipo->itemText(key6);
+    QString descripcion = ui->descripcionEquipo->toPlainText();
+
+    if(privilegio==3||privilegio==1){
+        Equipos nuevo2(titulo,descripcion,especialista);
+        nodoDispersa *temp =matriz->lsthorizontal->buscar(titulo);
+        if(temp==nullptr){
+            QPushButton *nuevo = new QPushButton(titulo);
+            nuevo->setFixedHeight(60);
+            ui->horizontalLayout->addWidget(nuevo);
+            ui->equipoUsuario->addItem(titulo);
+            ui->equipoC->addItem(titulo);
+            ui->equipoEquipo->addItem(titulo);
+            ui->equipoUsuario->addItem(titulo);
+            agregarEquipo(nuevo2);
+        }
+
+    }
+        nodoDispersa *temp =matriz->lsthorizontal->buscar(titulo);
+        if(temp!=nullptr){
+            temp->equipo.cUsuario=especialista;
+            temp->equipo.descripcion=descripcion;
+            temp->equipo.Ussers->first=nullptr;
+            temp->equipo.Ussers->size=0;
+
+            for(int i =0; i<ui->tableWidget_3->rowCount();i++){
+                //esto sirve para castear objetos
+                QCheckBox *temp2 = dynamic_cast<QCheckBox*>(ui->tableWidget_3->cellWidget(i,0));
+                if(temp2->isChecked()==true){
+                    QString temp3 = ui->tableWidget_3->item(i,1)->text();
+
+                    temp->equipo.Ussers->agregar(temp3);
+                }
+            }
+            //agregar lista de checkbox
+
+        }else
+            qInfo()<<"No existe el equipo";
+
+        imprimirT();
+
+}
+
+void MainWindow::on_pushButton_22_clicked()
+{
+    //aqui agregamos equipo con privilegios 2 solo se modifica
+    QString titulo=ui->tituloProyecto->text();
+    QString inicio = ui->inicioProyecto->text();
+    QString entrega = ui->entregaProyecto->text();
+    QString estado = ui->estadoProyectos->itemText(key4);
+    QString lider = ui->liderProyectos->itemText(key5);
+    QString descripcion = ui->descripcionProyecto->toPlainText();
+
+
+    if(privilegio==2||privilegio==1){
+        Proyectos nuevo (titulo,descripcion,inicio,entrega,estado,lider);
+        nodoDispersa *temp =matriz->lstvertical->buscar(titulo);
+        if(temp==nullptr){
+            QPushButton *nuevo2 = new QPushButton(titulo);
+            nuevo2->setFixedHeight(75);
+            ui->verticalLayout->addWidget(nuevo2);
+            ui->proyectoActividades->addItem(titulo);
+            ui->proyectoC->addItem(titulo);
+            ui->proyectosProyectos->addItem(titulo);
+            agregarProyecto(nuevo);
+        }
+
+    }
+    nodoDispersa *temp = matriz->lstvertical->buscar(titulo);
+    if(temp!=nullptr){
+        temp->proyecto.Estado=estado;
+        temp->proyecto.fFin=entrega;
+        temp->proyecto.fInicio=inicio;
+        temp->proyecto.Lider=lider;
+        temp->proyecto.descripcion=descripcion;
+
+    }else
+        qInfo()<<"No existe Proyecto";
+     imprimirT();
+
+}
+
+void MainWindow::on_especialistaEquipo_activated(int index)
+{
+    key6=index;
+}
+
+void MainWindow::on_pushButton_24_clicked()
+{
+    QString x = ui->equipoActividades->itemText(ck6);
+    QString y = ui->proyectoActividades->itemText(ck7);
+    nodoDispersa *temp = matriz->buscar(x,y);
+
+    if(temp!=nullptr){
+        temp->getValor()->pop();
+        cargarTareasSecundarias();
+    }
+
+
+}
+
+void MainWindow::cargarTareasSecundarias()
+{
+    QString x = ui->equipoActividades->itemText(ck6);
+    QString y = ui->proyectoActividades->itemText(ck7);
+    nodoDispersa *temp = matriz->buscar(x,y);
+    //asignamos valor a la tabla
+
+    ui->tableWidget_2->clearContents();
+    ui->tableWidget_2->setRowCount(0);
+
+    if(temp!=nullptr){
+        Cola<Tareas> *temp2 = temp->getValor();
+        ui->tableWidget_2->setRowCount(temp->getValor()->size);
+        if(temp2->first!=nullptr){
+
+            Nodo<Tareas> *temp3=temp2->first;
+            int cont =0;
+            while(temp3!=nullptr){
+                //qInfo()<<temp3->getValor().titulo;
+                ui->tableWidget_2->setItem(cont,0,new QTableWidgetItem(temp3->getValor().id));
+                ui->tableWidget_2->setItem(cont,1,new QTableWidgetItem(temp3->getValor().titulo));
+                ui->tableWidget_2->setItem(cont,2,new QTableWidgetItem(temp3->getValor().fEntrega));
+                ui->tableWidget_2->setItem(cont,3,new QTableWidgetItem(temp3->getValor().priori));
+                ui->tableWidget_2->setItem(cont,4,new QTableWidgetItem(temp3->getValor().Estado));
+                ui->tableWidget_2->setItem(cont,5,new QTableWidgetItem(temp3->getValor().cUsuario));
+                ui->tableWidget_2->setItem(cont,6,new QTableWidgetItem("M"));
+                // ui->tableWidget_2->setItem(cont,7,new QTableWidgetItem("M"));
+
+                //nuevo->clicked();
+
+                //QObject::connect(ui->tableWidget_2->cellWidget(cont,6), SIGNAL(clicked()), this, SLOT(eliminarTarea(x,y)));
+                //ui->tableWidget_2->setCellWidget(cont,6,ta);
+                //connect(nuevo, SIGNAL (clicked()), MainWindow, SLOT ());
+
+                cont++;
+                temp3=temp3->sig;
+            }
+        }
+
+
+
+    }
+
+}
+
+void MainWindow::on_pushButton_23_clicked()
+{
+    QString x = ui->equipoC->itemText(ck);
+    QString y = ui->proyectoC->itemText(ck2);
+    QString titulo = ui->tituloAct->text();
+    QString fInicio = ui->fechaAct->text();
+    QString descricion = ui->descripcionAct->toPlainText();
+    QString prioridad = ui->prioridadC->itemText(ck3);
+    QString estado = ui->estadoC->itemText(ck4);
+    QString responsable = ui->usuariosC->itemText(ck5);
+
+    int pri=0;
+    int pri2=0;
+
+    if(prioridad=="urgente"){
+        pri=1;
+    }else if(prioridad=="alta")
+        pri=2;
+    else if(prioridad=="media")
+        pri=3;
+    else if(prioridad=="baja")
+        pri=4;
+    else
+        pri=0;
+
+    if(estado=="en ejecucion")
+        pri2=1;
+    else if(estado=="pendiente")
+        pri2=2;
+    else if(estado=="en pausa")
+        pri2=3;
+    else if(estado=="finalizada")
+        pri2=4;
+    else if(estado=="cancelada")
+        pri2=5;
+
+    Tareas nueva((new GeneradorID)->generarID(10),titulo,descricion,fInicio,pri,pri2,prioridad,estado,responsable);
+   // qInfo() << x << "  " << y;
+    matriz->insertar(nueva,x,y);
+    imprimirT();
+
+}
+
+void MainWindow::on_equipoC_activated(int index)
+{
+    ck=0;
+    ck=index;
+}
+
+void MainWindow::on_proyectoC_activated(const QString &arg1)
+{
+
+}
+
+void MainWindow::on_proyectoC_activated(int index)
+{
+    ck2=0;
+    ck2=index;
+
+}
+
+void MainWindow::on_prioridadC_activated(int index)
+{
+    ck3=index;
+}
+
+void MainWindow::on_estadoC_activated(int index)
+{
+    ck4=index;
+}
+
+void MainWindow::on_usuariosC_activated(int index)
+{
+    ck5=index;
+}
+
+void MainWindow::on_pushButton_25_clicked()
+{
+    matriz->Graficar();
+}
+
+void MainWindow::on_pushButton_27_clicked()
+{
+    QString y = ui->proyectosProyectos->itemText(key3);
+    qInfo()<<y;
+    matriz->ActividadesPorProyecto(y);
+}
+
+void MainWindow::on_comboBox_activated(const QString &arg1)
+{
+}
+
+void MainWindow::on_comboBox_activated(int index)
+{
+    key=index;
 }

@@ -13,7 +13,10 @@ AVL<T>::AVL()
 template<typename T>
 void AVL<T>::insertar(T val)
 {
-   this->raiz = add(val , this->raiz);
+    if(val.id=="O090"){
+        qInfo()<<"Aqui";
+    }
+   this->raiz = add(val, this->raiz);
    EnlazarPadres(this->raiz,nullptr);
 }
 
@@ -26,7 +29,7 @@ Nodo<T>* AVL<T>::add(T valor, Nodo<T> *root)
     else if(comparar(valor, root->getValor())<0){
         Nodo<T> *nodoaux = add(valor,root->izquierda);
         root->izquierda= nodoaux;
-        if((altura(root->derecha)-altura(root->izquierda))==2){
+        if((altura(root->derecha)-altura(root->izquierda))==-2){
             if(comparar(valor, root->izquierda->getValor())<0){
                 root = RotacionIzquierda(root);
             }else{
@@ -38,6 +41,7 @@ Nodo<T>* AVL<T>::add(T valor, Nodo<T> *root)
         root->derecha = nodoaux;
 
         if((altura(root->derecha)-altura(root->izquierda))==2){
+
             if(comparar(valor,root->derecha->getValor())>0){
                 root=RotacionDerecha(root);
 
@@ -87,8 +91,8 @@ Nodo<T>* AVL<T>::RotacionIzquierda(Nodo<T> *nodo)
     Nodo<T> *nodoaux = nodo->izquierda;
     nodo->izquierda=nodo->derecha;
     nodoaux->derecha= nodo;
-    nodo->altura = MAX(altura(nodo->izquierda),altura(nodo->derecha))+1;
-    nodoaux->altura = MAX(altura(nodoaux->izquierda),nodo->altura)+1;
+    nodo->setAltura( MAX(altura(nodo->izquierda),altura(nodo->derecha))+1);
+    nodoaux->setAltura(MAX(altura(nodoaux->izquierda),nodo->getAltura())+1);
     return nodoaux;
 }
 
@@ -98,8 +102,8 @@ Nodo<T>* AVL<T>::RotacionDerecha(Nodo<T> *nodo)
     Nodo<T> *nodoaux = nodo->derecha;
     nodo->derecha = nodoaux->izquierda;
     nodoaux->izquierda= nodo;
-    nodo->altura= MAX(altura(nodo->derecha),altura(nodo->izquierda))+1;
-    nodoaux->altura = MAX(altura(nodoaux->derecha),nodo->altura)+1;
+    nodo->setAltura( MAX(altura(nodo->derecha),altura(nodo->izquierda))+1);
+    nodoaux->setAltura( MAX(altura(nodoaux->derecha),nodo->getAltura())+1);
     return nodoaux;
 
 }
@@ -137,10 +141,12 @@ void AVL<T>::elim(Nodo<T> *nodo)
        derecha = true;
    else
        derecha = false;
+
    if(nodo->izquierda!=nullptr)
        izquierda = true;
    else
        izquierda = false;
+
    if(derecha == false && izquierda == false)
        reBalanceo(caso1(nodo));
    if(derecha != false && izquierda ==false)
@@ -158,7 +164,7 @@ Nodo<T>* AVL<T>::caso1(Nodo<T> *nodo)
 {
     Nodo<T> *nodoPadre;
     if(nodo->padre == nullptr){
-        this->raiz==nullptr;
+        this->raiz=nullptr;
         return nullptr;
     }
     else{
@@ -169,6 +175,9 @@ Nodo<T>* AVL<T>::caso1(Nodo<T> *nodo)
 
         if(izquierda != nullptr)
             if(izquierda->getValor().id==nodo->getValor().id)
+                nodo->padre->izquierda=nullptr;
+        if (derecha!=nullptr)
+            if(derecha->getValor().id==nodo->getValor().id)
                 nodo->padre->derecha=nullptr;
         colocarAlturas(this->raiz);
     }
@@ -193,7 +202,7 @@ Nodo<T>* AVL<T>::caso2(Nodo<T> *nodo)
             colocarAlturas(this->raiz);
             return Actual->padre;
         }
-        if(hijoizquierdo==nodo){
+        if(hijoderecho==nodo){
             nodo->padre->derecha=Actual;
             Actual->padre=nodo->padre;
             colocarAlturas(this->raiz);
@@ -239,6 +248,7 @@ Nodo<T>* AVL<T>::caso3(Nodo<T> *nodo)
         }
         ultimoIzquierda->padre->izquierda=nullptr;
         ultimoIzquierda->izquierda=nodo->izquierda;
+        ultimoIzquierda->derecha=nodo->derecha;
         ultimoIzquierda->padre = nodo->padre;
 
         nodo->izquierda->padre=ultimoIzquierda;
@@ -263,7 +273,7 @@ Nodo<T>* AVL<T>::caso3(Nodo<T> *nodo)
       colocarAlturas(this->raiz);
       return nodoDerecho;
     }
-    return nullptr;
+    //return nullptr;
 }
 
 template<typename T>
@@ -336,7 +346,7 @@ template<typename T>
 void AVL<T>::colocarAlturas(Nodo<T> *nodo)
 {
     if(nodo!= nullptr)
-        nodo->getAltura();
+        nodo->obtenerAltura();
 }
 
 template<class T>
@@ -347,6 +357,7 @@ void AVL<T>::reBalanceo(Nodo<T> *nodo)
             Nodo<T> *y=this->mayorHijo(nodo);
             Nodo<T> *z=this->mayorHijo(y);
             nodo= this->reestructuracion(nodo,y,z);
+            colocarAlturas(this->raiz);
         }
         if(nodo!=nullptr)
             nodo=nodo->padre;
@@ -356,7 +367,7 @@ void AVL<T>::reBalanceo(Nodo<T> *nodo)
 template<class T>
 bool AVL<T>::estaDesbalanceado(Nodo<T> *nodo)
 {
-    if(nodo->getFE() >1 | nodo->getFE()<-1)
+    if(nodo->getFE() >= 1 || nodo->getFE()<=-1)
         return true;
     else
         return false;
@@ -365,7 +376,7 @@ bool AVL<T>::estaDesbalanceado(Nodo<T> *nodo)
 template<class T>
 Nodo<T> *AVL<T>::mayorHijo(Nodo<T> *nodo)
 {
-    Nodo<T> *iz,*der = nullptr;
+    Nodo<T> *iz=nullptr,*der = nullptr;
     if(nodo!=nullptr){
         if(nodo->izquierda!=nullptr)
             iz = nodo->izquierda;
@@ -374,7 +385,7 @@ Nodo<T> *AVL<T>::mayorHijo(Nodo<T> *nodo)
         if(iz != nullptr && der != nullptr){
             if (iz->altura > der->altura)
                 return iz;
-            else if (iz->altura <der->altura)
+            else if (iz->altura < der->altura)
                 return der;
             else
                 return der;
@@ -385,6 +396,7 @@ Nodo<T> *AVL<T>::mayorHijo(Nodo<T> *nodo)
         else
             return nullptr;
     }
+    return nullptr;
 }
 
 template<class T>
@@ -427,7 +439,7 @@ Nodo<T> *AVL<T>::reestructuracion(Nodo<T> *x, Nodo<T> *y, Nodo<T> *z)
             }
         }
         else if(x->getFE()>1){
-            if(y->getFE()==1){
+            if(y->getFE()==-1){
                 if(this->raiz != x)
                     return RotacionDobleDerecha(x);
                 else{
@@ -435,7 +447,7 @@ Nodo<T> *AVL<T>::reestructuracion(Nodo<T> *x, Nodo<T> *y, Nodo<T> *z)
                     return raiz;
                 }
             }
-            else if(y->getFE()==-1){
+            else if(y->getFE()==1){
                 if(this->raiz!=x)
                     return RotacionDerecha(x);
                 else{
@@ -454,16 +466,17 @@ Nodo<T> *AVL<T>::reestructuracion(Nodo<T> *x, Nodo<T> *y, Nodo<T> *z)
             }
         }
     }
+    return nullptr;
 }
 
 template<typename T>
 int AVL<T>::comparar(T v1, T v2)
 {
     int resultado=0;
-    if(v1.id<v2.id)
+    if(v1.id.compare(v2.id)<0)
         resultado=-1;
 
-    else if(v1.id>v2.id)
+    else if(v1.id.compare(v2.id)>0)
         resultado=1;
     else
         resultado = 0;
@@ -480,7 +493,7 @@ void AVL<T>::impreArbol(Nodo<T> *nodo, Nodo<T> *padre)
         if(padre==nullptr){
            ficheroSalida.open("/home/andree/Escritorio/avl.txt");
            ficheroSalida << "digraph{ bgcolor = gray \n node[fontcolor = \"white \", height = 0.5, color = \"white \"] \n [shape=circle, style=filled, color=blue] \n rankdir=UD \n edge  [color=\"white\", dir=fordware]\n";
-           //ficheroSalida <<'\" ' << nodo->getValor().id.toStdString() << "\" ; \n";
+           ficheroSalida << '\"' << nodo->getValor().id.toStdString() << "\" ; \n";
            impreArbol(nodo->izquierda,nodo);
            impreArbol(nodo->derecha,nodo);
            ficheroSalida<< "}";

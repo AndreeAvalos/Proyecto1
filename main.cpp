@@ -6,7 +6,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;/*
+    Login *w;/*
 
    // Cola<Tareas> lst;
 
@@ -18,6 +18,8 @@ int main(int argc, char *argv[])
     lst.pop();
 
     lst.imprimir();
+
+
 
     matrizDispersa matriz;
     Tareas tnuevo("tarea1","D","D","D",1,1,"D","D");
@@ -48,8 +50,8 @@ int main(int argc, char *argv[])
    // matriz.insertar(nuevo4,"edd3","avance3");
     matriz.Graficar();
 */
-
-    w.show();
+    w = new Login();
+    w->show();
 
     // w.show();f
     return a.exec();

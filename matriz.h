@@ -9,6 +9,11 @@
 #include <string>
 #include <stdlib.h>
 #include <fstream>
+#include <QPdfWriter>
+#include <QPainter>
+#include <QMessageBox>
+#include <QDesktopServices>
+#include <QUrl>
 #include <iostream>
 //------------------------------------------------------------------------------
 struct nodoDispersa{
@@ -714,6 +719,77 @@ struct matrizDispersa{
             }
         }
         return -1;
+    }
+    void ActividadesPorProyecto(QString y){
+        QPdfWriter pdf("/home/andree/Escritorio/Reporte1.pdf");
+
+        QPainter painter(&pdf);
+        painter.setPen(Qt::black);
+        painter.drawText(200,0,y);
+        nodoDispersa *lateral= lstvertical->buscar(y);
+
+        if(lateral!=nullptr){
+            nodoDispersa *temp = lateral->derecha;
+            int contador=300;
+            if(temp!=nullptr){
+                while(temp!=nullptr){
+                    painter.setPen(Qt::red);
+                    painter.drawText(100,contador,temp->getX());
+                    //qInfo()<< lateral->getX();
+                    Cola<Tareas> *actual = temp->getValor();
+                    if(actual->first!=nullptr){
+                        Nodo<Tareas> *nodo =actual->first;
+                        while(nodo!=nullptr){
+                            painter.setPen(Qt::blue);
+                            contador=contador+300;
+                            painter.drawText(100,contador,nodo->getValor().titulo);
+                            //qInfo()<< nodo->getValor().titulo;
+                            nodo= nodo->sig;
+                        }
+                    }
+                    contador = contador+300;
+                    temp=temp->derecha;
+                }
+            }
+        }
+        painter.end();
+
+
+    }
+
+    void imprimirUsuario(Nodo<Usuarios> *user){
+
+        Usuarios temp = user->getValor();
+        QString id=temp.id;
+        QString nombre = temp.Nombres;
+        QString rol = temp.rol;
+        QPdfWriter pdf("/home/andree/Escritorio/"+id+".pdf");
+        QPainter painter(&pdf);
+        painter.setPen(Qt::black);
+        painter.drawText(0,0,"-------------------------------------------------------");
+        painter.drawText(50,100,nombre);
+        painter.drawText(50,300,id);
+        painter.drawText(50,500,rol);
+        painter.drawText(0,600,"-------------------------------------------------------");
+        painter.setPen(Qt::red);
+        painter.drawText(0,800,"-----------------------------Tareas Encargadas--------------------------");
+        painter.drawText(0,1000,"   ");
+
+        nodoDispersa *derecha = lsthorizontal->first;
+
+        int contador =1200 ;
+        while(derecha!=nullptr){
+
+            //painter.drawText(50,contador,horizontal->);
+            qInfo()<<"<<horizontal->equipo.nombre";
+            contador=contador+200;
+
+            derecha=derecha->derecha;
+        }
+
+        painter.end();
+
+
     }
 };
 struct nodoC{

@@ -36,8 +36,9 @@ void Login::on_pushButton_2_clicked()
                 ui->label_4->setText("Usuario encontrado");
 
                 //this->hide();
-
-                w->show();
+                w->privilegio=1;
+                w->bloquear();
+                 w->show();
 
                 ui->label_4->clear();
                 ui->lineEdit->clear();
@@ -56,6 +57,18 @@ void Login::on_pushButton_2_clicked()
             if(ui->lineEdit->text().toStdString()==nodo->getValor().id.toStdString()){
                 if(ui->lineEdit_2->text().toStdString()==nodo->getValor().pass.toStdString()){
                     if(ui->comboBox->itemText(ckey).toStdString()==nodo->getValor().rol.toStdString()){
+                        QString rol = nodo->getValor().rol;
+                        if(rol=="Administrador")
+                            w->privilegio=1;
+                        else if(rol=="Líder")
+                            w->privilegio=2;
+                        else if(rol=="Especialista")
+                            w->privilegio=3;
+                        else if(rol=="Operativo")
+                            w->privilegio=4;
+
+                        w->bloquear();
+
                         w->show();
                         ui->label_4->clear();
                         ui->lineEdit->clear();

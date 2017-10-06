@@ -34,6 +34,41 @@ template<typename T>
 void Nodo<T>::setValor(T val){
     this->val=val;
 }
+
+template<class T>
+void Nodo<T>::setAltura(int altura)
+{
+ this->altura=altura;
+}
+
+template<class T>
+int Nodo<T>::obtenerAltura()
+{
+    int val1=0;
+    int val2=0;
+    if(this->izquierda!=nullptr)
+        val1=izquierda->obtenerAltura();
+
+    if(derecha!=nullptr)
+        val2=derecha->obtenerAltura();
+
+    if(val1 != 0 && val2 !=0 ){
+        if (val1 < val2)
+            altura=val2+1;
+        else if (val1>val2)
+            altura = val1+1;
+        else
+            altura=val1+1;
+    }else{
+        if (val1!=0)
+            altura= val1+1;
+        else if (val2!=0)
+            altura = val2+1;
+        else
+            altura = 0;
+    }
+    return altura;
+}
 template<typename T>
 QString Nodo<T>::getX(){
     return this->x;
@@ -76,30 +111,7 @@ int Nodo<T>::comparar(T val){
 //---------------------------PARA AVL--------------------------
 template <typename T>
 int Nodo<T>::getAltura(){
-    int val1=0;
-    int val2=0;
-    if(this->izquierda!=nullptr)
-        val1=izquierda->getAltura();
-
-    if(derecha!=nullptr)
-        val2=derecha->getAltura();
-
-    if(val1 != 0 && val2 !=0 ){
-        if (val1 < val2)
-            altura=val2+1;
-        else if (val1>val2)
-            altura = val1+1;
-        else
-            altura=val1+1;
-    }else{
-        if (val1==0)
-            altura= val1+1;
-        else if (val2==0)
-            altura = val2+1;
-        else
-            altura = 0;
-    }
-    return altura;
+return this->altura;
 }
 
 template <typename T>
@@ -108,11 +120,12 @@ int Nodo<T>::getFE(){
     int val2=0;
 
     if(this->izquierda!=nullptr)
-        val1=izquierda->getAltura();
+        val1=izquierda->getAltura()+1;
 
     if(derecha!=nullptr)
-        val2=derecha->getAltura();
-    return val2-val1;
+        val2=derecha->getAltura()+1;
+    int fe = val2-val1;
+    return fe;
 
 }
 //-------------------------------------------------------

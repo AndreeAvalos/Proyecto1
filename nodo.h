@@ -18,15 +18,18 @@ public:
     QString getX();
     QString getY();
     void setValor(T);
+    void setAltura(int altura);
     int comparar(T);
     //para AVL
     Nodo *raiz,*padre;
     int altura;
+    int obtenerAltura();
     int getAltura();
     int getFE();
+        T val;
 
 private:
-    T val;
+
     QString x,y;
 };
 
